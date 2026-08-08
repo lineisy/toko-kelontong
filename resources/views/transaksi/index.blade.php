@@ -27,7 +27,7 @@
                 @csrf
 
                 <div class="bg-white shadow rounded-lg p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Layer 1 - Data Penjualan</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Data Penjualan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Tanggal</label>
@@ -47,7 +47,7 @@
 
                 <div class="page-card p-6">
                     <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-gray-800">Layer 2 - Detail Penjualan</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Detail Penjualan</h3>
                         <x-button color="success" x-data="" x-on:click="$dispatch('open-modal', 'modal-tambah-barang')">
                             <i class="fas fa-plus mr-2"></i> Tambah Barang
                         </x-button>
