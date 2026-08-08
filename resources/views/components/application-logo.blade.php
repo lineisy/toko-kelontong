@@ -1,1 +1,1 @@
-<img src="{{ asset('images/logo_petshop.png') }}" class="{{ $attributes->get('class') }} mr-2" alt="Logo Aplikasi">
+<img src="{{ asset('images/toko.png') }}" class="{{ $attributes->get('class') }} mr-2" alt="Logo Aplikasi">

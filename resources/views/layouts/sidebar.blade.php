@@ -2,7 +2,7 @@
 <aside class="sidebar fixed top-0 left-0 h-full flex flex-col z-50 shadow-sm" id="sidebar">
     <div class="h-16 flex items-center px-5 border-b border-[var(--gray-300)]">
          <x-application-logo class="block h-9 w-auto fill-current text-[var(--primary)]" />
-        <span class="text-lg font-bold brand-text">Pet<span class="text-[var(--danger)]">Shop</span></span>
+        <span class="text-lg font-bold brand-text">Toko<span class="text-[var(--danger)]">Kelontong</span></span>
         <button id="sidebar-close" class="ml-auto md:hidden text-gray-400 hover:text-gray-700 transition">
             <i class="fas fa-times text-lg"></i>
         </button>
