@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Penjualan;
 use App\Models\Produk;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +16,26 @@ class AdminController extends Controller
     public function dashboard(): View
     {
         $title = 'Dashboard Admin';
-        return view('admin.dashboard', compact('title'));
+
+        $totalProduk = Produk::count();
+        $totalKategori = Kategori::count();
+
+        $transaksiHariIni = Penjualan::whereDate('tanggal', today())->count();
+        $pendapatanHariIni = Penjualan::whereDate('tanggal', today())->sum('total');
+
+        $transaksiTerbaru = Penjualan::with('user')
+            ->latest('tanggal')
+            ->take(5)
+            ->get();
+
+        return view('admin.dashboard', compact(
+            'title',
+            'totalProduk',
+            'totalKategori',
+            'transaksiHariIni',
+            'pendapatanHariIni',
+            'transaksiTerbaru'
+        ));
     }
 
     public function transaksi(): View
@@ -116,6 +136,9 @@ class AdminController extends Controller
             }
         });
 
-        return redirect()->route('admin.transaksi')->with('success', 'Transaksi berhasil disimpan.');
+        $kembalianFormatted = 'Rp ' . number_format($kembalian, 0, ',', '.');
+
+        return redirect()->route('admin.transaksi')
+            ->with('success', "Transaksi berhasil disimpan. Kembalian: {$kembalianFormatted}");
     }
 }
