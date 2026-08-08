@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================
+   PETSHOP BRAND THEME
+   ========================================= */
+
+:root {
+    --sidebar-width: 260px;
+    --header-height: 64px;
+
+    /* Brand Colors */
+    --primary: #8B6245;
+    --primary-dark: #6F4E37;
+    --primary-light: #A98261;
+    --primary-soft: #F3EADF;
+
+    /* Supporting Colors */
+    --success: #6F8F72;
+    --warning: #C8924A;
+    --danger: #B9685C;
+
+    /* Neutral / Cream */
+    --gray-50: #FFFCF8;
+    --gray-100: #FAF6F0;
+    --gray-200: #F3EADF;
+    --gray-300: #E8DDD1;
+    --gray-400: #B9A99A;
+    --gray-500: #8C7A6B;
+    --gray-600: #6F5D50;
+    --gray-700: #56463A;
+    --gray-800: #45372F;
+    --gray-900: #3E3027;
+
+    /* Logo Cream */
+    --cream: #F8F1E7;
+}
+
+
+/* =========================================
+   GLOBAL
+   ========================================= */
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--gray-100);
+    color: var(--gray-900);
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: #FFFCF8;
+    border-right: 1px solid var(--gray-300);
+    transition: transform 0.3s ease;
+}
+
+.sidebar-overlay {
+    transition: opacity 0.3s ease;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.nav-link {
+    transition: all 0.2s ease;
+    border-radius: 0.65rem;
+    color: var(--gray-600);
+}
+
+.nav-link:hover {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+.nav-link.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   BRAND / LOGO
+   ========================================= */
+
+.brand-text {
+    color: var(--primary-dark);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+    color: var(--gray-500);
+    font-size: 0.7rem;
+}
+
+
+/* =========================================
+   STAT CARD
+   ========================================= */
+
+.stat-card {
+    background: #FFFCF8;
+    border: 1px solid var(--gray-300);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    cursor: default;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #D9C8B7;
+    box-shadow: 0 12px 24px -8px rgba(111, 78, 55, 0.12);
+}
+
+
+/* =========================================
+   BUTTON
+   ========================================= */
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 6px 14px rgba(111, 78, 55, 0.18);
+}
+
+.btn-secondary {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #EBDDCF;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+    background: #58745C;
+    box-shadow: 0 6px 14px rgba(111, 78, 55, 0.16);
+}
+
+.btn-warning {
+    background: var(--warning);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-warning:hover {
+    background: #A7752F;
+    box-shadow: 0 6px 14px rgba(111, 78, 55, 0.16);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+    background: #9B4D47;
+    box-shadow: 0 6px 14px rgba(111, 78, 55, 0.16);
+}
+
+.btn-info {
+    background: var(--primary-light);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-info:hover {
+    background: var(--primary);
+    box-shadow: 0 6px 14px rgba(111, 78, 55, 0.16);
+}
+
+
+/* =========================================
+   SEARCH / FORM
+   ========================================= */
+
+.search-input,
+.form-control {
+    background: #FFFCF8;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-900);
+    transition: all 0.2s ease;
+}
+
+.search-input::placeholder,
+.form-control::placeholder {
+    color: var(--gray-400);
+}
+
+.search-input:focus,
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(139, 98, 69, 0.12);
+}
+
+.page-card {
+    background: #FFFCF8;
+    border: 1px solid var(--gray-300);
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px -12px rgba(111, 78, 55, 0.16);
+}
+
+.table-shell {
+    background: #FFFCF8;
+    border: 1px solid var(--gray-300);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TABLE
+   ========================================= */
+
+.table-th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray-500);
+    font-weight: 600;
+}
+
+.table-row {
+    transition: background 0.15s ease;
+}
+
+.table-row:hover {
+    background: #FCF8F3;
+}
+
+
+/* =========================================
+   BADGE
+   ========================================= */
+
+.badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+}
+
+.badge-primary {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+.badge-success {
+    background: #E8F0E8;
+    color: #56725A;
+}
+
+.badge-warning {
+    background: #F8EEDC;
+    color: #986D2F;
+}
+
+.badge-danger {
+    background: #F5E4E1;
+    color: #99564D;
+}
+
+
+/* =========================================
+   TABS
+   ========================================= */
+
+.tab-btn {
+    transition: all 0.2s ease;
+    color: var(--gray-500);
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal-overlay {
+    transition: opacity 0.25s ease;
+    background: rgba(62, 48, 39, 0.35);
+}
+
+.modal-content {
+    background: #FFFCF8;
+    border: 1px solid var(--gray-300);
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+}
+
+
+/* =========================================
+   FORM ELEMENTS
+   ========================================= */
+
+input,
+select,
+textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(139, 98, 69, 0.1);
+}
+
+
+/* =========================================
+   TOAST
+   ========================================= */
+
+.toast {
+    animation:
+        slideIn 0.4s ease,
+        fadeOut 0.4s ease 2.6s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+}
+
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-400);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 50;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
