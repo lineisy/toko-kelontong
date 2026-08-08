@@ -39,7 +39,8 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Bayar</label>
-                            <input type="number" name="bayar" id="input-bayar" value="{{ old('bayar') }}" min="0" oninput="updateKembalian()" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" inputmode="numeric" id="input-bayar-display" value="{{ old('bayar') }}" oninput="handleBayarInput(this)" placeholder="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="hidden" name="bayar" id="input-bayar" value="{{ old('bayar') }}">
                         </div>
                     </div>
                 </div>
@@ -130,6 +131,18 @@
             el.textContent = formatCurrency(kembalian);
             el.classList.toggle('text-red-500', kembalian < 0);
             el.classList.toggle('text-gray-700', kembalian >= 0);
+        }
+
+        // Field Bayar: yang dilihat user pakai titik ribuan (500.000),
+        // tapi yang dikirim ke server angka murni tanpa titik (500000)
+        function handleBayarInput(el) {
+            const raw = el.value.replace(/\D/g, ''); // buang semua selain angka
+            const numberValue = raw ? parseInt(raw, 10) : 0;
+
+            el.value = raw ? numberValue.toLocaleString('id-ID') : '';
+            document.getElementById('input-bayar').value = numberValue;
+
+            updateKembalian();
         }
 
         function renderItems() {
