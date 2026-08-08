@@ -108,6 +108,9 @@ class KasirController extends Controller
             }
         });
 
-        return redirect()->route('kasir.transaksi')->with('success', 'Transaksi berhasil disimpan.');
+        $kembalianFormatted = 'Rp ' . number_format($kembalian, 0, ',', '.');
+
+        return redirect()->route('kasir.transaksi')
+            ->with('success', "Transaksi berhasil disimpan. Kembalian: {$kembalianFormatted}");
     }
 }

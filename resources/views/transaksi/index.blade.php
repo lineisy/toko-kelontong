@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Bayar</label>
-                            <input type="number" name="bayar" value="{{ old('bayar') }}" min="0" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="number" name="bayar" id="input-bayar" value="{{ old('bayar') }}" min="0" oninput="updateKembalian()" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                     </div>
                 </div>
@@ -54,9 +54,15 @@
 
                     <div id="detail-items" class="space-y-2"></div>
 
-                    <div class="mt-4 border-t pt-3 flex items-center justify-between text-sm font-semibold text-gray-700">
-                        <span>Total</span>
-                        <span id="detail-total">Rp 0</span>
+                    <div class="mt-4 border-t pt-3 space-y-2">
+                        <div class="flex items-center justify-between text-sm font-semibold text-gray-700">
+                            <span>Total</span>
+                            <span id="detail-total">Rp 0</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm font-semibold" id="kembalian-row">
+                            <span class="text-gray-700">Kembalian</span>
+                            <span id="detail-kembalian" class="text-gray-700">Rp 0</span>
+                        </div>
                     </div>
 
                     <div id="detail-inputs"></div>
@@ -111,6 +117,21 @@
             }).format(value);
         }
 
+        function getTotal() {
+            return transactionItems.reduce((sum, item) => sum + (item.harga * item.jumlah), 0);
+        }
+
+        function updateKembalian() {
+            const total = getTotal();
+            const bayar = Number(document.getElementById('input-bayar').value) || 0;
+            const kembalian = bayar - total;
+            const el = document.getElementById('detail-kembalian');
+
+            el.textContent = formatCurrency(kembalian);
+            el.classList.toggle('text-red-500', kembalian < 0);
+            el.classList.toggle('text-gray-700', kembalian >= 0);
+        }
+
         function renderItems() {
             const detailItems = document.getElementById('detail-items');
             const detailInputs = document.getElementById('detail-inputs');
@@ -120,6 +141,7 @@
             if (transactionItems.length === 0) {
                 detailItems.innerHTML = '<div class="rounded border border-dashed border-gray-300 p-3 text-sm text-gray-500">Belum ada barang yang dipilih.</div>';
                 document.getElementById('detail-total').textContent = formatCurrency(0);
+                updateKembalian();
                 return;
             }
 
@@ -157,6 +179,7 @@
             });
 
             document.getElementById('detail-total').textContent = formatCurrency(total);
+            updateKembalian();
         }
 
         function addItemToList() {
