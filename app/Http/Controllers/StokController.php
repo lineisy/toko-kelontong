@@ -5,22 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Stok;
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class StokController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan stok berdasarkan produk.
      */
     public function index($id)
     {
         $title = 'Daftar Stok';
-        $data = Stok::with('produk')->where('produk_id', $id)->get();
+
+        $data = Stok::with('produk')
+            ->where('produk_id', $id)
+            ->get();
+
         $produk = Produk::findOrFail($id);
-        return view('stok.index', compact('title', 'data', 'id', 'produk'));
+
+        return view('stok.index', compact(
+            'title',
+            'data',
+            'id',
+            'produk'
+        ));
     }
 
-    
+    /**
+     * Menambahkan stok.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -32,19 +43,24 @@ class StokController extends Controller
 
         Stok::create($request->all());
 
-        return redirect()->route('admin.produk.stock', $request->produk_id)->with('success', 'Stok berhasil ditambahkan.');
+        return redirect()
+            ->route('admin.produk.stock', $request->produk_id)
+            ->with('success', 'Stok berhasil ditambahkan.');
     }
 
-   
     /**
-     * Remove the specified resource from storage.
+     * Menghapus stok.
      */
     public function destroy(string $id)
     {
         $stok = Stok::findOrFail($id);
-        $produkId = $stok->produk_id; // Simpan produk_id sebelum menghapus stok
+
+        $produkId = $stok->produk_id;
+
         $stok->delete();
 
-        return redirect()->route('admin.produk.stock', $produkId)->with('success', 'Stok berhasil dihapus.');
+        return redirect()
+            ->route('admin.produk.stock', $produkId)
+            ->with('success', 'Stok berhasil dihapus.');
     }
 }
